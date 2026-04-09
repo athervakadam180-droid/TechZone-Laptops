@@ -34,7 +34,7 @@ body {
 
 .card {
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     text-align: center;
@@ -58,20 +58,42 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── Laptop Data ──────────────────────────────────────
+# ── Laptop Data (WITH IMAGES) ─────────────────────────
 laptops = [
-    {"name": "HP Pavilion", "price": "₹55,000", "desc": "i5 | 8GB RAM | 512GB SSD"},
-    {"name": "Dell Inspiron", "price": "₹60,000", "desc": "i5 | 16GB RAM | 512GB SSD"},
-    {"name": "Lenovo IdeaPad", "price": "₹50,000", "desc": "Ryzen 5 | 8GB RAM | 512GB SSD"},
-    {"name": "MacBook Air", "price": "₹95,000", "desc": "M1 Chip | 8GB RAM | 256GB SSD"},
+    {
+        "name": "HP Pavilion",
+        "price": "₹55,000",
+        "desc": "i5 | 8GB RAM | 512GB SSD",
+        "img": "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed"
+    },
+    {
+        "name": "Dell Inspiron",
+        "price": "₹60,000",
+        "desc": "i5 | 16GB RAM | 512GB SSD",
+        "img": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+    },
+    {
+        "name": "Lenovo IdeaPad",
+        "price": "₹50,000",
+        "desc": "Ryzen 5 | 8GB RAM | 512GB SSD",
+        "img": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853"
+    },
+    {
+        "name": "MacBook Air",
+        "price": "₹95,000",
+        "desc": "M1 Chip | 8GB RAM | 256GB SSD",
+        "img": "https://images.unsplash.com/photo-1515879218367-8466d910aaa4"
+    },
 ]
 
 # ── Display Cards ────────────────────────────────────
 st.markdown('<div class="section-title">Available Laptops</div>', unsafe_allow_html=True)
 
 cols = st.columns(4)
+
 for col, l in zip(cols, laptops):
     with col:
+        st.image(l["img"], use_container_width=True)
         st.markdown(f"""
         <div class="card">
             <h3>{l['name']}</h3>
@@ -101,6 +123,7 @@ with col2:
 
 st.write("")
 
+# ── Button ───────────────────────────────────────────
 if st.button("🛒 Buy Now"):
     if product == "Select":
         st.warning("Please select a laptop")
@@ -110,7 +133,7 @@ if st.button("🛒 Buy Now"):
         st.success("✅ Order placed successfully!")
         st.balloons()
 
-        st.write("### Order Summary")
+        st.write("### 📦 Order Summary")
         st.write(f"**Product:** {product}")
         st.write(f"**Budget:** ₹{budget}")
         st.write(f"**Name:** {name}")
